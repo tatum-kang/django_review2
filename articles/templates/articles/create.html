@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Article::Create{% endblock title %}
 {% block container %}
-<form>
-  <input type="text"><br>
-  <textarea cols="30" rows="10"></textarea><br>
+<form method="POST" action="{% url 'articles:create' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
   <button type="submit">CREATE</button>
 </form>
 {% endblock container %}

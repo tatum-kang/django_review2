@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Articles::Index{% endblock title %}
+
+{% block container %}
+<h2>Article List</h2>
+<a href="{% url 'articles:create' %}">[생성하기]</a>
+<hr>
+{% for article in articles %}
+<div>
+  <a href="{% url 'articles:detail' article.pk %}"><h3>{{ article.pk }}. {{ article.title }}</h3></a>
+</div>
+<br>
+{% empty %}
+<h3>Article empty</h3>
+{% endfor %}
+
+{% endblock container %}
