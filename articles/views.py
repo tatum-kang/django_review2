@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ArticleForm
-from .models import Article
+from .forms import ArticleForm, CommentForm
+from .models import Article, Comment
 from IPython import embed
 from django.views.decorators.http import require_GET, require_POST
 
@@ -31,7 +31,13 @@ def create(request):
 def detail(request, article_pk):
     # Article.objects.get(pk=article_pk)
     article = get_object_or_404(Article, pk=article_pk)
-    context = {'article':article}
+    comments = article.comments.all()
+    form = CommentForm()
+    context = {
+        'article':article,
+        'comments': comments,
+        'form':form,
+        }
     return render(request, 'articles/detail.html', context)
 
 
@@ -53,3 +59,19 @@ def delete(request, article_pk):
     article.delete()
     return redirect('articles:index')
 
+    
+@require_POST
+def comments_create(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.article = article
+        form.save()
+    return redirect('articles:detail', article_pk)
+
+@require_POST
+def comments_delete(request, article_pk, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    comment.delete()
+    return redirect('articles:detail', article_pk)

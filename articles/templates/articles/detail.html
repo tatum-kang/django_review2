@@ -11,4 +11,26 @@
   {% csrf_token %}
   <button type="submit">삭제하기</button>
 </form>
+<hr>
+
+<h3>댓글</h3>
+<ul>
+  {% for comment in comments %}
+    <li>
+      <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="post">
+        {% csrf_token %}
+        <span>{{comment.pk}}. {{ comment.content }}</span><button type="submit">삭제하기</button>
+      </form>
+    </li>
+  {% empty %}
+    <p>아직 댓글이 없습니다.</p>
+  {% endfor %}
+</ul>
+
+<form action="{% url 'articles:comments_create' article.pk %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">댓글쓰기</button>
+</form>
+
 {% endblock container %}
