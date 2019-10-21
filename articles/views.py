@@ -3,16 +3,20 @@ from .forms import ArticleForm, CommentForm
 from .models import Article, Comment
 from IPython import embed
 from django.views.decorators.http import require_GET, require_POST
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+
 
 # Create your views here.
 @require_GET
 def index(request):
+    # embed()
     articles = Article.objects.all()
     context = {'articles': articles}
     return render(request, 'articles/index.html', context)
 
 # GET, POST
-
+@login_required  # accounts/login/으로 보냄
 def create(request):
     #Article을 생성해달라고 하는 요청
     if request.method == 'POST':
@@ -40,7 +44,7 @@ def detail(request, article_pk):
         }
     return render(request, 'articles/detail.html', context)
 
-
+@login_required
 def update(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     if request.method == 'POST':
@@ -55,23 +59,27 @@ def update(request, article_pk):
 
 @require_POST
 def delete(request, article_pk):
-    article = get_object_or_404(Article, pk=article_pk)
-    article.delete()
+    if request.user.is_authenticated:
+        article = get_object_or_404(Article, pk=article_pk)
+        article.delete()
     return redirect('articles:index')
 
     
 @require_POST
 def comments_create(request, article_pk):
-    article = get_object_or_404(Article, pk=article_pk)
-    form = CommentForm(request.POST)
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.article = article
-        form.save()
+    if request.user.is_authenticated:
+        article = get_object_or_404(Article, pk=article_pk)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = article
+            form.save()
     return redirect('articles:detail', article_pk)
 
 @require_POST
 def comments_delete(request, article_pk, comment_pk):
-    comment = get_object_or_404(Comment, pk=comment_pk)
-    comment.delete()
-    return redirect('articles:detail', article_pk)
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, pk=comment_pk)
+        comment.delete()
+        return redirect('articles:detail', article_pk)
+    return HttpResponse('You are Unauthorized', status=401)
