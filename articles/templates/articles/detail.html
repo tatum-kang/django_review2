@@ -10,7 +10,20 @@
 {% endif %}
 <h2>{{ article.title }}</h2>
 <p>{{ article.created_at }}</p>
+
+{% if user.is_authenticated %}
+<a href="{% url 'articles:like' article.pk %}">
+  {% if request.user in article.liked_users.all %}
+  <i class="fas fa-heart fa-lg" style="color:red"></i>
+  {% else %}
+  <i class="far fa-heart fa-lg" style="color:red"></i>
+  {% endif %}
+</a>
+<span>{{ article.liked_users.all | length }}명이 이 글을 좋아합니다.</span>
+{% endif %}
 <br>
+
+
 <p>{{ article.content }}</p>
 </form>
 <hr>

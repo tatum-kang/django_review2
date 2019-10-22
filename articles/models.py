@@ -3,13 +3,18 @@ from django.core.validators import EmailValidator, MinValueValidator
 from django.conf import settings
 
 # Create your models here.
+#article.liked_users.all()
+#user.liked_articles.all()
 class Article(models.Model):
     title = models.CharField(max_length=20)
     content = models.TextField()
     image = models.ImageField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # model에서 user를 가져올 때는 settings에서 직접 꺼내옴
+    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # model에서 user를 가져올 때는 settings에서 직접 꺼내옴 settings.AUTH_USER_MODEL
+    liked_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_articles')
+
 
     class Meta:
         ordering = ('-pk', )

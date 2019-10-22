@@ -101,3 +101,16 @@ def comment_delete(request, article_pk, comment_pk):
             comment.delete()
         return redirect('articles:detail', article_pk)
     return HttpResponse('You are Unauthorized', status=401)
+
+
+def like(request, article_pk):
+    if request.user.is_authenticated:
+        user = request.user
+        article = get_object_or_404(Article, pk=article_pk)
+        # article.liked_user.add(user)
+        # if user in article.liked_users.all():
+        if article.liked_users.filter(pk=user.pk).exists():
+            article.liked_users.remove(user)
+        else:
+            user.liked_articles.add(article)
+        return redirect('articles:detail', article_pk)
