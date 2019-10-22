@@ -1,0 +1,46 @@
+[
+    {
+        "model": "articles.article",
+        "pk": 1,
+        "fields": {
+            "title": "\uccab\ubc88\uc9f8 \ud0c0\uc774\ud2c0",
+            "content": "asdfasdfasdf",
+            "content2": "adfsadf",
+            "created_at": "2019-10-16T01:24:18.341Z",
+            "updated_at": "2019-10-16T07:22:57.128Z"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 2,
+        "fields": {
+            "title": "\ub450\ubc88\uc9f8 \uc544\ud2f0\ud074",
+            "content": "",
+            "content2": "",
+            "created_at": "2019-10-16T01:24:44.790Z",
+            "updated_at": "2019-10-16T01:24:44.790Z"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 3,
+        "fields": {
+            "title": "\ud558\uc774\ub8e8",
+            "content": "\u314e\u3147\u314e\u3147asdfasdf",
+            "content2": "\u3142\u3147\u3142\u3147gdgdg",
+            "created_at": "2019-10-16T05:08:56.034Z",
+            "updated_at": "2019-10-16T07:22:19.138Z"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 4,
+        "fields": {
+            "title": "\ud558\uc774\ub8e8",
+            "content": "\u314e\u3147\u314e\u3147asdfasdf",
+            "content2": "\u3142\u3147\u3142\u3147gdgdg",
+            "created_at": "2019-10-16T07:21:58.219Z",
+            "updated_at": "2019-10-16T07:22:38.723Z"
+        }
+    }
+]

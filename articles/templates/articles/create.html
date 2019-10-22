@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}Article::Create{% endblock title %}
-{% block container %}
-<form method="POST" action="{% url 'articles:create' %}">
+
+{% block title %}Article::create{% endblock title %}
+
+{% block body %}
+<form method="POST">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">CREATE</button>
+  <button type="submit">생성하기</button>
 </form>
-{% endblock container %}
+{% endblock body %}

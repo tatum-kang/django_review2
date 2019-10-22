@@ -1,0 +1,32 @@
+- model: articles.article
+  pk: 1
+  fields:
+    title: "\uCCAB\uBC88\uC9F8 \uD0C0\uC774\uD2C0"
+    content: asdfasdfasdf
+    content2: adfsadf
+    created_at: 2019-10-16 01:24:18.341247+00:00
+    updated_at: 2019-10-16 07:22:57.128882+00:00
+- model: articles.article
+  pk: 2
+  fields:
+    title: "\uB450\uBC88\uC9F8 \uC544\uD2F0\uD074"
+    content: ''
+    content2: ''
+    created_at: 2019-10-16 01:24:44.790674+00:00
+    updated_at: 2019-10-16 01:24:44.790674+00:00
+- model: articles.article
+  pk: 3
+  fields:
+    title: "\uD558\uC774\uB8E8"
+    content: "\u314E\u3147\u314E\u3147asdfasdf"
+    content2: "\u3142\u3147\u3142\u3147gdgdg"
+    created_at: 2019-10-16 05:08:56.034076+00:00
+    updated_at: 2019-10-16 07:22:19.138101+00:00
+- model: articles.article
+  pk: 4
+  fields:
+    title: "\uD558\uC774\uB8E8"
+    content: "\u314E\u3147\u314E\u3147asdfasdf"
+    content2: "\u3142\u3147\u3142\u3147gdgdg"
+    created_at: 2019-10-16 07:21:58.219920+00:00
+    updated_at: 2019-10-16 07:22:38.723962+00:00

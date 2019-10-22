@@ -1,0 +1,18 @@
+[
+    {
+        "model": "musicians.musician",
+        "pk": 1,
+        "fields": {
+            "firstname": "John",
+            "lastname": "Lennon"
+        }
+    },
+    {
+        "model": "musicians.musician",
+        "pk": 2,
+        "fields": {
+            "firstname": "Paul",
+            "lastname": "McCartney"
+        }
+    }
+]

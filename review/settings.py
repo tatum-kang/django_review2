@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&h#cnb+nb!t^k4z^f16!*^pe=ah%a5ee6#fy@%531-(81bwwlr'
+SECRET_KEY = 'q%xikc007zo5m=tt-j44vp%v0vf2)e684wzzqw_3jd=0aoe32u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,13 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #my_app
+    # Local apps
     'articles',
     'accounts',
-    #Thrid party apps
+
+    # Third party apps
     'django_extensions',
 
-    # django_app
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -112,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = 'ASIA/SEOUL'
 
 USE_I18N = True
 
@@ -125,9 +126,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'assets'),
-]
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploaded_files')
-MEDIA_URL = '/media/'
