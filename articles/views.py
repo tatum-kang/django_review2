@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST, require_GET
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from .forms import ArticleForm, CommentForm
 from .models import Article, Comment
@@ -114,3 +115,14 @@ def like(request, article_pk):
         else:
             user.liked_articles.add(article)
         return redirect('articles:detail', article_pk)
+
+def follow(request, article_pk, user_pk):
+    # if request.user.is_authenticated:
+    user = request.user
+    person = get_object_or_404(get_user_model(), pk=user_pk)
+
+    if user in person.followers.all(): # 이미 팔로워임
+        person.followers.remove(user)
+    else: # 팔로우 하겠음.
+        person.followers.add(user)
+    return redirect('articles:detail', article_pk)
